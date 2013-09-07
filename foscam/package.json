@@ -1,0 +1,24 @@
+{
+  "name": "nitrogen-foscam",
+  "homepage": "https://github.com/nitrogenjs/foscam",
+  "repository" : {
+      "type" : "git",
+      "url" : "https://github.com/nitrogenjs/foscam.git"
+  },
+  "author": "Tim Park <timfpark@gmail.com>",
+  "version": "0.1.2",
+  "licenses" : [{
+    "type": "Apache",
+    "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+  }],
+
+  "main": "./lib",
+  "dependencies": {
+      "foscam": "0.2.2"
+  },
+  "keywords": [
+    "camera",
+    "foscam",
+    "nitrogen"
+  ]
+}
