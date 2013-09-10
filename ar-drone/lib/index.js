@@ -16,7 +16,7 @@ function ARDrone() {
 }
 
 ARDrone.prototype = Object.create(nitrogen.Device.prototype);
-ARDrone.prototype.constructor = MockDrone;
+ARDrone.prototype.constructor = ARDrone;
 
 // droneManager device interface
 
