@@ -51,8 +51,8 @@ ARDrone.prototype.counterClockwise = function(speed) {
 };
 
 ARDrone.prototype.forward = function(speed) {
-    console.log('set forward speed to ' + speed);
-    this.client.forward(speed);
+    console.log('set foreward speed to ' + speed);
+    this.client.front(speed);
 };
 
 ARDrone.prototype.back = function(speed) {
@@ -73,6 +73,11 @@ ARDrone.prototype.takeoff = function(callback) {
 ARDrone.prototype.land = function(callback) {
     console.log('land drone');
     this.client.land(callback);
+};
+
+ARDrone.prototype.flipAhead = function() {
+    console.log('flip foward');
+    this.client.animate('flipAhead', 1300);
 };
 
 ARDrone.prototype.status = function(callback) {
