@@ -1,22 +1,5 @@
-# raspberrypi-camera
+# Devices
 
-This module allows you to use a GPIO pin in Nitrogen as a device.
+This is an umbrella project for device adapters developed as part of the Nitrogen.js project.
 
-## How to use in your project
-
-1. Add 'nitrogen-gpio-pin' to your packages.json.
-2. Configure the pin you'd like to control:
-```
-var config = {
-    pin: 4  
-};
-```
-
-3. Create a GPIO pin device:
-```
-var GPIOPin = require('nitrogen-gpio-pin');
-var gpioPin = new GPIOPin(config); 
-gpioPin.set(0, function() {
-    // success
-});
-```
+Each subdirectory contains a complete project (and npm module) for each respective device.  Please consult each project for their respective licensing.
