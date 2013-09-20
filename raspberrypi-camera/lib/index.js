@@ -1,6 +1,9 @@
-var exec = require('child_process').exec;
+var exec = require('child_process').exec
+  , nitrogen = require('nitrogen');
 
 function RaspberryPiCamera(config) {
+    nitrogen.Device.apply(this, arguments);
+
     if (!config) config = {};
 
     this.config = config;
@@ -8,6 +11,9 @@ function RaspberryPiCamera(config) {
     this.config.width = this.config.width || 640;
     this.config.height = this.config.height || 480;
 }
+
+RaspberryPiCamera.prototype = Object.create(nitrogen.Device.prototype);
+RaspberryPiCamera.prototype.constructor = RaspberryPiCamera;
 
 RaspberryPiCamera.prototype.snapshot = function(options, callback) {
     options.path = options.path || new Date().getTime() + ".jpg";
@@ -18,6 +24,10 @@ RaspberryPiCamera.prototype.snapshot = function(options, callback) {
     exec(command, function (err, stdout, stderr) {
         return callback(err);
     });
+};
+
+FoscamCamera.prototype.status = function(callback) {
+    callback(false, {});
 };
 
 module.exports = RaspberryPiCamera;
