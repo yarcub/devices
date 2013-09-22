@@ -1,7 +1,7 @@
 var gpio = require('gpio')
   , nitrogen = require('nitrogen');
 
-function GPIOSwitch() {
+function GPIOPin() {
     nitrogen.Device.apply(this, arguments);
 
     if (!this.config) this.config = {};
@@ -13,7 +13,7 @@ function GPIOSwitch() {
     this.awaitingReady = [];
 
     var self = this;
-    this.switchGPIO = gpio.export(this.config.pin, {
+    this.pin = gpio.export(this.config.pin, {
         direction: 'out',
         ready: function() {
             self.ready = true;
@@ -22,34 +22,34 @@ function GPIOSwitch() {
     });
 }
 
-GPIOSwitch.prototype = Object.create(nitrogen.Device.prototype);
-GPIOSwitch.prototype.constructor = GPIOSwitch;
+GPIOPin.prototype = Object.create(nitrogen.Device.prototype);
+GPIOPin.prototype.constructor = GPIOPin;
 
-GPIOSwitch.prototype.whenReady = function (callback) {
+GPIOPin.prototype.whenReady = function (callback) {
     if (this.ready)
         callback();
     else
         this.awaitingReady.push(callback);
 };
 
-GPIOSwitch.prototype.set = function(value, callback) {
+GPIOPin.prototype.set = function(value, callback) {
     var self = this;
     this.whenReady(function() {
-        self.switchGPIO.set(value, callback);
+        self.pin.set(value, callback);
     });
 };
 
-GPIOSwitch.prototype.signalReady = function() {
+GPIOPin.prototype.signalReady = function() {
     this.awaitingReady.forEach(function(callback) {
         callback();
     });
 };
 
-GPIOSwitch.prototype.status = function(callback) {
+GPIOPin.prototype.status = function(callback) {
     var self = this;
     this.whenReady(function() {
-        callback(null, { value: self.switchGPIO.value });
+        callback(null, { value: self.pin.value });
     });
 };
 
-module.exports = GPIOSwitch;
+module.exports = GPIOPin;
