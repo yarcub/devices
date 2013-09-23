@@ -22,11 +22,11 @@ RaspberryPiCamera.prototype.snapshot = function(options, callback) {
 
     var command = 'raspistill -t 0 -n -o ' + options.path + ' -w ' + options.width + ' -h ' + options.height;
     exec(command, function (err, stdout, stderr) {
-        return callback(err);
+        return callback(err, options);
     });
 };
 
-FoscamCamera.prototype.status = function(callback) {
+RaspberryPiCamera.prototype.status = function(callback) {
     callback(false, {});
 };
 
