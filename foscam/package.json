@@ -1,9 +1,9 @@
 {
   "name": "nitrogen-foscam",
-  "homepage": "https://github.com/nitrogenjs/foscam",
+  "homepage": "https://github.com/nitrogenjs/devices",
   "repository" : {
       "type" : "git",
-      "url" : "https://github.com/nitrogenjs/foscam.git"
+      "url" : "https://github.com/nitrogenjs/devices.git"
   },
   "author": "Tim Park <timfpark@gmail.com>",
   "version": "0.1.2",
