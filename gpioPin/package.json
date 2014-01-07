@@ -14,7 +14,7 @@
 
   "main": "./lib",
   "dependencies": {
-      "gpio": "*",
+      "timfpark-gpio": "*",
       "nitrogen": ">=0.1.31"
   },
   "keywords": [
