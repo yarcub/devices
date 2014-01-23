@@ -22,6 +22,11 @@ RaspberryPiCamera.prototype.snapshot = function(options, callback) {
     options.height = options.height || this.config.height;
 
     var command = 'raspistill -t 0 -n -o ' + options.path + ' -w ' + options.width + ' -h ' + options.height;
+
+    if (this.config.rotate) {
+        command += ' -rot ' + this.config.rotate;
+    }
+
     exec(command, function (err, stdout, stderr) {
         return callback(err, options);
     });
