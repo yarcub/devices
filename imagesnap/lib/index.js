@@ -1,5 +1,5 @@
-var exec = require('child_process').exec
-  , nitrogen = require('nitrogen');
+var nitrogen = require('nitrogen')
+  , spawn = require('child_process').spawn;
 
 function ImageSnapCamera(config) {
     nitrogen.Device.apply(this, arguments);
@@ -17,14 +17,11 @@ ImageSnapCamera.prototype = Object.create(nitrogen.Device.prototype);
 ImageSnapCamera.prototype.constructor = ImageSnapCamera;
 
 ImageSnapCamera.prototype.snapshot = function(options, callback) {
-    options.path = options.path || new Date().getTime() + ".jpg";
     options.width = options.width || this.config.width;
     options.height = options.height || this.config.height;
+    options.content_type = 'image/jpeg';
 
-    var command = 'imagesnap -w 1.0 ' + options.path;
-    exec(command, function (err, stdout, stderr) {
-        return callback(err, options);
-    });
+    return callback(spawn('imagesnap', ['-w', '1.0', '-']), options);
 };
 
 ImageSnapCamera.prototype.status = function(callback) {
