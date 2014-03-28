@@ -21,7 +21,9 @@ ImageSnapCamera.prototype.snapshot = function(options, callback) {
     options.height = options.height || this.config.height;
     options.content_type = 'image/jpeg';
 
-    return callback(spawn('imagesnap', ['-w', '1.0', '-']), options);
+    var process = spawn('imagesnap', ['-w', '1.0', '-']);
+
+    return callback(process.stdout, options);
 };
 
 ImageSnapCamera.prototype.status = function(callback) {
