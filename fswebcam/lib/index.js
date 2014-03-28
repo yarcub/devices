@@ -1,4 +1,4 @@
-var exec = require('child_process').exec
+var spawn = require('child_process').spawn
   , nitrogen = require('nitrogen');
 
 function FSWebCamCamera(config) {
@@ -21,10 +21,9 @@ FSWebCamCamera.prototype.snapshot = function(options, callback) {
     options.width = options.width || this.config.width;
     options.height = options.height || this.config.height;
 
-    var command = 'fswebcam -r ' + this.config.width + 'x' + this.config.height + ' --no-banner --no-timestamp --jpeg 85 -D 2 ' + options.path;
-    exec(command, function (err, stdout, stderr) {
-        return callback(err, options);
-    });
+    var process = spawn('fswebcam', ['-r', this.config.width + 'x' + this.config.height, '--no-banner', '--no-timestamp', '--jpeg', '85', '-D', '2', '-']);
+    
+    return callback(process.stdout, options);
 };
 
 FSWebCamCamera.prototype.status = function(callback) {
