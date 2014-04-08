@@ -1,5 +1,4 @@
-var exec = require('child_process').exec
-  , nitrogen = require('nitrogen');
+var nitrogen = require('nitrogen');
 
 function PhilipsHueLight(config) {
     nitrogen.Device.apply(this, arguments);
