@@ -6,7 +6,7 @@ function FoscamCamera() {
 
     if (!this.config || !this.config.host || !this.config.user || !this.config.password) return console.log('Incomplete configuration for Foscam device, unable to connect.');
 
-    this.capabilities = ['cameraCommand'];
+    this.tags = ['executes:cameraCommand'];
 
     this.config.port = this.config.port || 80;
     this.config.width = this.config.width || 640;
@@ -28,7 +28,7 @@ FoscamCamera.prototype.constructor = FoscamCamera;
 
 FoscamCamera.prototype.snapshot = function(shot, callback) {
     shot.path = shot.path || new Date().getTime() + ".jpg";
-   
+
     var calledBack = false;
 
     setTimeout(function() {
