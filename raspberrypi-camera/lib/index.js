@@ -3,7 +3,7 @@ var exec = require('child_process').exec
 
 function RaspberryPiCamera(config) {
     nitrogen.Device.apply(this, arguments);
-    this.capabilities = ['cameraCommand'];
+    this.tags = ['executes:cameraCommand'];
 
     if (!config) config = {};
 
