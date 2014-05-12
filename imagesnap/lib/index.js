@@ -3,7 +3,7 @@ var nitrogen = require('nitrogen')
 
 function ImageSnapCamera(config) {
     nitrogen.Device.apply(this, arguments);
-    this.capabilities = ['cameraCommand'];
+    this.tags = ['executes:cameraCommand'];
 
     if (!config) config = {};
 
