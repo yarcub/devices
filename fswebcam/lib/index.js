@@ -11,8 +11,8 @@ function FSWebCamCamera(config) {
 
     this.config.width = this.config.width || 640;
     this.config.height = this.config.height || 480;
-    this.config.skip = this.config.skip || 6;
-    this.config.delay = this.config.delay || 30;
+    this.config.skip = this.config.skip || 30;
+    this.config.delay = this.config.delay || 6;
     this.config.quality = this.config.quality || 85;
 }
 
