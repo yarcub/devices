@@ -6,7 +6,7 @@ function FoscamCamera() {
 
     if (!this.config || !this.config.host || !this.config.user || !this.config.password) return console.log('Incomplete configuration for Foscam device, unable to connect.');
 
-    this.tags = ['executes:cameraCommand'];
+    this.tags = ['executes:cameraCommand', 'sends:image'];
 
     this.config.port = this.config.port || 80;
     this.config.width = this.config.width || 640;
