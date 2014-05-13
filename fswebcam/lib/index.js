@@ -3,7 +3,7 @@ var spawn = require('child_process').spawn
 
 function FSWebCamCamera(config) {
     nitrogen.Device.apply(this, arguments);
-    this.tags = ['executes:cameraCommand'];
+    this.tags = ['executes:cameraCommand', 'sends:image'];
 
     if (!config) config = {};
 
