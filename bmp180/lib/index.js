@@ -22,19 +22,22 @@ BMP085Device.prototype = Object.create(nitrogen.Device.prototype);
 BMP085Device.prototype.constructor = BMP085Device;
 
 BMP085Device.prototype.measure = function(callback) {
-    this.bmp085.readData(function(measurements) {
+    this.bmp085.read(function(data) {
+	// the bmp085 / bmp180 returns presure in hPA 
+        var pascals = data.pressure * 100.0;
+
         var messages = [
             new nitrogen.Message({
                 type: 'temperature',
                 body: {
-                    temperature: measurements.temperature
+                    temperature: data.temperature
                 }
             }),
 
             new nitrogen.Message({
                 type: 'pressure',
                 body: {
-                    pressure: measurements.pressure
+                    pressure: pascals
                 }
             })
         ];
