@@ -3,7 +3,7 @@ var nitrogen = require('nitrogen');
 function PhilipsHueLight(config) {
     nitrogen.Device.apply(this, arguments);
 
-    this.capabilities = ['lightCommand'];
+    this.tags = ['executes:lightCommand', 'sends:lightState'];
 
     if (!config) config = {};
 
