@@ -9,7 +9,7 @@ function BMP085Device() {
     if (!this.config.address) this.config.address = 0x77;
     if (!this.config.devicePath) this.config.devicePath = "/dev/i2c-1";
 
-    this.tags = ['sends:temperature, sends:pressure'];
+    this.tags = ['sends:temperature', 'sends:pressure'];
 
     this.bmp085 = new BMP085({
         mode: this.config.mode,
