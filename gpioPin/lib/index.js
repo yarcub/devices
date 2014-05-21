@@ -1,4 +1,4 @@
-var gpio = require('gpio')
+var gpio = require('timfpark-gpio')
   , nitrogen = require('nitrogen');
 
 function GPIOPin() {
@@ -6,7 +6,7 @@ function GPIOPin() {
 
     if (!this.config) this.config = {};
 
-    this.capabilities = ['switchCommand'];
+    this.tags = ['executes:switchCommand'];
 
     this.config.pin = this.config.pin || 4;
 
