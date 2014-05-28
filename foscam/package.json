@@ -6,7 +6,7 @@
       "url" : "https://github.com/nitrogenjs/devices.git"
   },
   "author": "Tim Park <timfpark@gmail.com>",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "licenses" : [{
     "type": "Apache",
     "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -14,7 +14,7 @@
 
   "main": "./lib",
   "dependencies": {
-      "nitrogen": "~0.1.304",
+      "nitrogen": "~0.1.315",
       "foscam": "~0.2.2"
   },
   "keywords": [

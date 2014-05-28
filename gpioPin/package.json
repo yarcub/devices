@@ -6,7 +6,7 @@
       "url" : "https://github.com/nitrogenjs/devices.git"
   },
   "author": "Tim Park <timfpark@gmail.com>",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "licenses" : [{
     "type": "Apache",
     "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -15,7 +15,7 @@
   "main": "./lib",
   "dependencies": {
       "timfpark-gpio": "*",
-      "nitrogen": ">=0.1.31"
+      "nitrogen": "~0.1.315"
   },
   "keywords": [
     "PowerSwitch",
