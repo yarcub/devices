@@ -1,4 +1,4 @@
-var exec = require('child_process').exec
+var spawn = require('child_process').spawnkj
   , nitrogen = require('nitrogen');
 
 function RaspberryPiCamera(config) {
@@ -21,15 +21,16 @@ RaspberryPiCamera.prototype.snapshot = function(options, callback) {
     options.width = options.width || this.config.width;
     options.height = options.height || this.config.height;
 
-    var command = 'raspistill -t 0 -n -o ' + options.path + ' -w ' + options.width + ' -h ' + options.height;
+    var args = ['-t', 0, '-n', '-o', '-', '-w', options.width, '-h', options.height];
 
     if (this.config.rotate) {
-        command += ' -rot ' + this.config.rotate;
+        args.push('-rot');
+        args.push(this.config.rotate);
     }
 
-    exec(command, function (err, stdout, stderr) {
-        return callback(err, options);
-    });
+    var process = spawn('raspistill', args);
+
+    return callback(process.stdout, options);
 };
 
 RaspberryPiCamera.prototype.status = function(callback) {
