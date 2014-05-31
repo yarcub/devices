@@ -1,12 +1,12 @@
 {
-  "name": "nitrogen-bmp085",
+  "name": "nitrogen-airpi",
   "homepage": "https://github.com/nitrogenjs/devices",
   "repository": {
     "type": "git",
     "url": "https://github.com/nitrogenjs/devices.git"
   },
   "author": "Tim Park <timfpark@gmail.com>",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "licenses": [
     {
       "type": "Apache",
