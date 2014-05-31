@@ -1,10 +1,13 @@
-var bmp085 = require('bmp085')
+var async = require('async')
+  , BMP085 = require('bmp085')
   , nitrogen = require('nitrogen');
 
 function AirPiDevice(config) {
     nitrogen.Device.apply(this, arguments);
 
-    if (!config) config = {};
+    this.config = config;
+
+    if (!this.config) this.config = {};
     if (!this.config.mode) this.config.mode = 1;
     if (!this.config.address) this.config.address = 0x77;
     if (!this.config.devicePath) this.config.devicePath = "/dev/i2c-1";
@@ -20,7 +23,7 @@ function AirPiDevice(config) {
 }
 
 AirPiDevice.prototype = Object.create(nitrogen.Device.prototype);
-AirPiDevice.prototype.constructor = FSWebCamCamera;
+AirPiDevice.prototype.constructor = AirPiDevice;
 
 AirPiDevice.prototype.measureBmp085 = function(callback) {
     this.bmp085.read(function(data) {
@@ -53,13 +56,21 @@ AirPiDevice.prototype.measureDht22 = function(callback) {
 };
 
 AirPiDevice.prototype.measure = function(callback) {
-    var messages = [];
     var self = this;
 
     async.parallel([
         function(cb) { self.measureBmp085(cb); },
         function(cb) { self.measureDht22(cb);  }
-    ], callback);
+    ], function(err, results) {
+        if (err) return callback(err);
+
+        var messages = [];
+        results.forEach(function(result) {
+            messages = messages.concat(result);
+        });
+
+        return callback(null, messages);
+    });
 };
 
 AirPiDevice.prototype.status = function(callback) {
