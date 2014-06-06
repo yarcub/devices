@@ -12,7 +12,7 @@ function AirPiDevice(config) {
     this.config.mode = this.config.mode || 1;
     this.config.address = this.config.address || 0x77;
     this.config.devicePath = this.config.devicePath || "/dev/i2c-1";
-    this.config.dht22_pin = this.config.dht22_pin || 4;
+//    this.config.dht22_pin = this.config.dht22_pin || 4;
 
     this.tags = ['executes:sensorCommand', 'sends:temperature', 'sends:pressure', 'sends:humidity'];
 
@@ -74,8 +74,8 @@ AirPiDevice.prototype.measure = function(callback) {
     var self = this;
 
     async.parallel([
-        function(cb) { self.measureBmp085(cb); },
-        function(cb) { self.measureDht22(cb);  }
+        function(cb) { self.measureBmp085(cb); }
+//      , function(cb) { self.measureDht22(cb);  }
     ], function(err, results) {
         if (err) return callback(err);
 
