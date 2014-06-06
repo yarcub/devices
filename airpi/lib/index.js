@@ -1,5 +1,6 @@
 var async = require('async')
   , BMP085 = require('bmp085')
+  , DHT22 = require('node-dht22')
   , nitrogen = require('nitrogen');
 
 function AirPiDevice(config) {
@@ -8,12 +9,12 @@ function AirPiDevice(config) {
     this.config = config;
 
     if (!this.config) this.config = {};
-    if (!this.config.mode) this.config.mode = 1;
-    if (!this.config.address) this.config.address = 0x77;
-    if (!this.config.devicePath) this.config.devicePath = "/dev/i2c-1";
+    this.config.mode = this.config.mode || 1;
+    this.config.address = this.config.address || 0x77;
+    this.config.devicePath = this.config.devicePath || "/dev/i2c-1";
+    this.config.dht22_pin = this.config.dht22_pin || 4;
 
-    this.config = config;
-    this.tags = ['executes:sensorCommand', 'sends:temperature', 'sends:pressure'];
+    this.tags = ['executes:sensorCommand', 'sends:temperature', 'sends:pressure', 'sends:humidity'];
 
     this.bmp085 = new BMP085({
         mode:       this.config.mode,
@@ -51,8 +52,22 @@ AirPiDevice.prototype.measureBmp085 = function(callback) {
 };
 
 AirPiDevice.prototype.measureDht22 = function(callback) {
-    // TODO
-    return callback(null, []);
+    var data = DHT22.read(this.config.dht22_pin);
+
+    // sensor data not yet valid
+    if (data.state !== 0) return callback(null, []);
+
+    // we ignore the temperature reading since the BMP085 is more accurate.
+    var messages = [
+        new nitrogen.Message({
+            type: 'humidity',
+            body: {
+                humidity: data.humidity
+            }
+        }),
+    ];
+
+    return callback(null, messages);
 };
 
 AirPiDevice.prototype.measure = function(callback) {
