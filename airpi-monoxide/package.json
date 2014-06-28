@@ -1,0 +1,28 @@
+{
+  "name": "mics4514",
+  "homepage": "https://github.com/nitrogenjs/devices",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nitrogenjs/devices.git"
+  },
+  "author": "Tim Park <timfpark@gmail.com>",
+  "version": "0.1.13",
+  "licenses": [
+    {
+      "type": "Apache",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  ],
+  "main": "./lib",
+  "dependencies": {
+    "async": "*",
+    "nitrogen": "~0.1.316",
+    "mcp3008.js": "0.2.0"
+  },
+  "keywords": [
+    "nitrogen",
+    "iot",
+    "bmp085",
+    "bmp180"
+  ]
+}
